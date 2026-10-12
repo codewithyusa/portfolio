@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "yusuf-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,12 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "autoprefixer": "^10.6.1",
-    "lucide-react": "^1.55.0",
-    "postcss": "^8.5.29",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "tailwindcss": "^4.3.3"
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

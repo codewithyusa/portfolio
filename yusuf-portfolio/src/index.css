@@ -1,111 +1,125 @@
+/* Hero photo: morphing blob, reacts on hover */
+@import "tailwindcss";
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --bg: #fcfcfc;
+  --fg: #111111;
+  --muted: #55555f;
+  --border: #e8e8ec;
+  --surface: #ffffff;
+  --accent: #4457e6;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+[data-theme="dark"] {
+  --bg: #0b0b0f;
+  --fg: #f5f5f7;
+  --muted: #a0a0ab;
+  --border: #25252d;
+  --surface: #14141a;
+  --accent: #8b99ff;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+@theme inline {
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
 }
 
 body {
-  margin: 0;
+  @apply bg-bg text-fg font-sans antialiased;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* Hero photo: morphing blob, reacts on hover */
+@keyframes blob-morph {
+  0%   { border-radius: 60% 40% 55% 45% / 55% 45% 55% 45%; }
+  25%  { border-radius: 45% 55% 40% 60% / 60% 40% 60% 40%; }
+  50%  { border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%; }
+  75%  { border-radius: 40% 60% 45% 55% / 55% 45% 40% 60%; }
+  100% { border-radius: 60% 40% 55% 45% / 55% 45% 55% 45%; }
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+.hero-blob {
+  border: 4px solid var(--border);
+  animation: blob-morph 10s ease-in-out infinite;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-blob:hover {
+  border-color: var(--accent);
+  animation-duration: 4s;
+  box-shadow: 0 25px 50px -12px color-mix(in srgb, var(--accent) 35%, transparent);
+}/* Page fade-in */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.page-enter {
+  animation: page-enter 0.4s ease-out;
+}/* Code card colors */
+:root {
+  --code-bg: #ffffff;
+  --code-fg: #3d4252;
+  --code-muted: #8b90a3;
+  --code-line: #e8e8ec;
+  --code-kw: #a259f7;
+  --code-id: #5b7cfa;
+  --code-str: #2f9e74;
+  --code-item: #e5a122;
+  --code-num: #6a6af0;
+  --code-glow: rgba(99, 102, 241, 0.25);
+}
+
+[data-theme="dark"] {
+  --code-bg: #12141f;
+  --code-fg: #c9d1e8;
+  --code-muted: #8b92a8;
+  --code-line: rgba(255, 255, 255, 0.1);
+  --code-kw: #c792ea;
+  --code-id: #82aaff;
+  --code-str: #5fd3a5;
+  --code-item: #f5a742;
+  --code-num: #8b8bff;
+  --code-glow: rgba(99, 102, 241, 0.5);
+}
+
+@theme inline {
+  --color-code-bg: var(--code-bg);
+  --color-code-fg: var(--code-fg);
+  --color-code-muted: var(--code-muted);
+  --color-code-line: var(--code-line);
+  --color-code-kw: var(--code-kw);
+  --color-code-id: var(--code-id);
+  --color-code-str: var(--code-str);
+  --color-code-item: var(--code-item);
+}/* Skill bars fill on appear */
+@keyframes bar-grow {
+  from { width: 0; }
+}
+
+.bar-grow {
+  animation: bar-grow 0.9s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar-grow {
+    animation: none;
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
   }
 }
-p {
-  margin: 0;
-}
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+@media (prefers-reduced-motion: reduce) {
+  .hero-blob {
+    animation: none;
+    border-radius: 50%;
+  }
 }

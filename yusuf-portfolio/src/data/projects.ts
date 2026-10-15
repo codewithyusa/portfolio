@@ -1,3 +1,4 @@
+import { GITHUB_URL } from "./socials";
 import type { Project } from "../types";
 
 export const projects: Project[] = [
@@ -7,19 +8,29 @@ export const projects: Project[] = [
     title: "Training Management System",
     description:
       "Manages training schedules, participants and progress tracking, with JWT login, role-based access and a REST API.",
-    tags: ["React", "NestJS", "PostgreSQL"],
+    tags: ["Angular", "ASP.NET Core", "PostgreSQL"],
     gradient: "linear-gradient(135deg, #1b2a6b, #1a0f3d)",
-    github: "https://github.com/your-username/tms",
+    github: GITHUB_URL,
   },
   {
-    id: "shop",
+    id: "shop-dotnet",
     label: "SHOP",
-    title: "E-Commerce Platform",
+    title: "E-Commerce Platform (.NET)",
     description:
       "Product listings, cart, checkout and payment flow, with inventory management and user accounts.",
     tags: ["Angular", "ASP.NET Core", "MongoDB"],
     gradient: "linear-gradient(135deg, #3aa876, #1f4e79)",
-    github: "https://github.com/your-username/shop",
+    github: GITHUB_URL,
+  },
+  {
+    id: "shop-mern",
+    label: "MERN",
+    title: "E-Commerce Platform (MERN)",
+    description:
+      "A full online store built on the MERN stack, with product listings, cart, checkout and secure user accounts.",
+    tags: ["MongoDB", "Express", "React", "Node.js"],
+    gradient: "linear-gradient(135deg, #c026d3, #4338ca)",
+    github: GITHUB_URL,
   },
   {
     id: "rail",
@@ -28,17 +39,7 @@ export const projects: Project[] = [
     description: "A real-time app to monitor train locations and schedules.",
     tags: ["Real-time", "Full-stack"],
     gradient: "linear-gradient(135deg, #a85a28, #66701f)",
-    github: "https://github.com/your-username/rail",
-  },
-  {
-    id: "capstone",
-    label: "A+.N",
-    title: "Angular and .NET Capstone",
-    description:
-      "Capstone project built with an Angular front end and an ASP.NET Core API.",
-    tags: ["Angular", ".NET", "SQL"],
-    gradient: "linear-gradient(135deg, #7b1fa2, #6a1b5a)",
-    github: "https://github.com/your-username/capstone",
+    github: GITHUB_URL,
   },
   {
     id: "odin",
@@ -48,6 +49,6 @@ export const projects: Project[] = [
       "A collection of apps and exercises built while completing The Odin Project curriculum.",
     tags: ["HTML", "CSS", "JavaScript"],
     gradient: "linear-gradient(135deg, #a88a22, #4f7a1f)",
-    github: "https://github.com/your-username/odin",
+    github: GITHUB_URL,
   },
 ];

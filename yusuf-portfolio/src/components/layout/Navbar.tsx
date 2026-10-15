@@ -2,9 +2,9 @@ import { useCallback, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { navLinks } from "../../data/navLinks";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { cn } from "../../utils/cn";
 import ThemeToggle from "../ui/ThemeToggle";
 import MobileMenu from "./MobileMenu";
-import { cn } from "../../utils/cn";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function Navbar() {
           YU.
         </Link>
 
-        <ul className="hidden items-center gap-10 md:flex">
+        <ul className="hidden items-center gap-6 md:flex lg:gap-10">
           {navLinks.map(({ label, to }) => (
             <li key={to}>
               <NavLink
@@ -46,7 +46,15 @@ export default function Navbar() {
             aria-controls="mobile-menu"
             className="grid size-10 place-items-center rounded-full transition hover:bg-border md:hidden"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
               {menuOpen ? (
                 <path d="M6 6l12 12M18 6L6 18" />
               ) : (

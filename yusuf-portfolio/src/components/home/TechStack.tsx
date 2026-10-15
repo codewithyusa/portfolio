@@ -9,7 +9,7 @@ const filters: Filter[] = ["All Tech", "Frontend", "Mobile", "Backend & API", "D
 
 const TechCard = memo(function TechCard({ name, level, icon: Icon, color }: TechItem) {
   return (
-    <li className="rounded-2xl border border-border bg-surface p-5 transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <li className="rounded-2xl border border-border bg-surface p-5 transition duration-300 hover:-translate-y-1 hover:border-accent hover:shadow-lg">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <span className="grid size-11 place-items-center rounded-xl bg-bg">
@@ -46,16 +46,14 @@ export default function TechStack() {
   );
 
   return (
-    <section className="mx-auto w-full max-w-6xl px-6 py-20">
-      <h2 className="text-center text-4xl font-extrabold tracking-tight md:text-5xl">
-        Skills &amp; Tech Stack
-      </h2>
-      <p className="mx-auto mt-4 max-w-xl text-center text-muted">
+    <section className="mx-auto w-full max-w-6xl px-6 py-12">
+      <h1 className="text-5xl font-extrabold tracking-tight md:text-6xl">Skills.</h1>
+      <p className="mt-8 max-w-2xl text-lg leading-8 text-muted">
         Tools, frameworks, and technologies I use to turn ideas into secure, fast web and mobile
         products.
       </p>
 
-      <div className="mt-10 flex flex-wrap justify-center gap-3">
+      <div className="mt-10 flex flex-wrap justify-start gap-3">
         {filters.map((filter) => (
           <button
             key={filter}

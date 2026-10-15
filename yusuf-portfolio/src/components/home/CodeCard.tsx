@@ -1,14 +1,22 @@
 import type { ReactNode } from "react";
 
-const Kw = ({ children }: { children: ReactNode }) => <span className="text-code-kw">{children}</span>;
-const Id = ({ children }: { children: ReactNode }) => <span className="text-code-id">{children}</span>;
-const Str = ({ children }: { children: ReactNode }) => <span className="text-code-str">{children}</span>;
-const Item = ({ children }: { children: ReactNode }) => <span className="text-code-item">{children}</span>;
+const Kw = ({ children }: { children: ReactNode }) => (
+  <span className="text-code-kw">{children}</span>
+);
+const Id = ({ children }: { children: ReactNode }) => (
+  <span className="text-code-id">{children}</span>
+);
+const Str = ({ children }: { children: ReactNode }) => (
+  <span className="text-code-str">{children}</span>
+);
+const Item = ({ children }: { children: ReactNode }) => (
+  <span className="text-code-item">{children}</span>
+);
 
 export default function CodeCard() {
   return (
     <div className="mx-auto w-full max-w-md rounded-3xl border border-code-line bg-code-bg p-6 text-code-fg shadow-[0_0_70px_-10px_var(--code-glow)] md:p-7">
-      <div className="flex items-center justify-between border-b border-code-line pb-5">
+      <div className="flex items-center justify-between border-b border-code-line pb-4">
         <div className="flex gap-2">
           <span className="size-3 rounded-full bg-[#ff5f56]" />
           <span className="size-3 rounded-full bg-[#ffbd2e]" />
@@ -17,11 +25,12 @@ export default function CodeCard() {
         <span className="font-mono text-xs text-code-muted">yusuf_developer.ts</span>
       </div>
 
-      <pre className="whitespace-pre-wrap break-words py-6 font-mono text-[13px] leading-7 md:text-sm md:leading-8">
+      <pre className="whitespace-pre-wrap break-words py-5 font-mono text-[13px] leading-7 md:text-sm md:leading-7">
         <Kw>const</Kw> <Id>developer</Id> = {"{"}
         {"\n  "}name: <Str>'Yusuf Umer'</Str>,
-        {"\n  "}title: <Str>'Full-Stack & Mobile Engineer'</Str>,
-        {"\n  "}skills: [<Item>'React'</Item>, <Item>'Angular'</Item>, <Item>'.NET'</Item>, <Item>'Flutter'</Item>],
+        {"\n  "}title: <Str>'Full-Stack &amp; Mobile Engineer'</Str>,
+        {"\n  "}skills: [<Item>'React'</Item>, <Item>'Angular'</Item>, <Item>'.NET'</Item>,{" "}
+        <Item>'Flutter'</Item>],
         {"\n  "}passions: [<Str>'Clean Architecture'</Str>, <Str>'Secure APIs'</Str>],
         {"\n  "}location: <Str>'Addis Ababa'</Str>,
         {"\n  "}status: <Str>'Ready for Next Challenge'</Str>
@@ -35,10 +44,10 @@ export default function CodeCard() {
         {"}"}
       </pre>
 
-      <div className="flex items-center justify-between border-t border-code-line pt-5">
+      <div className="flex items-center justify-between border-t border-code-line pt-4">
         <div className="flex items-center gap-4">
-          <span className="grid size-12 place-items-center rounded-full bg-gradient-to-br from-[#4457e6] to-[#8b6bff] font-bold text-white">
-            YU
+          <span className="grid size-12 place-items-center rounded-full bg-gradient-to-br from-[#4457e6] to-[#8b6bff] text-sm font-bold text-white">
+            YUSA
           </span>
           <div>
             <p className="font-semibold text-fg">Yusuf Umer</p>

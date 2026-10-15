@@ -4,7 +4,7 @@ import CodeCard from "./CodeCard";
 
 export default function Hero() {
   return (
-    <section className="mx-auto grid w-full max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-2">
+    <section className="mx-auto grid w-full max-w-6xl items-center gap-12 px-6 py-10 md:grid-cols-2">
       <div>
         <span className="text-sm font-semibold uppercase tracking-[0.15em] text-accent">
           Full-Stack | Mobile | .NET
@@ -46,11 +46,11 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-10 md:items-end">
+      <div className="flex flex-col items-center gap-6 md:items-end">
         <img
           src="/yusuf.jpg"
           alt="Yusuf Umer"
-          className="hero-blob size-56 object-cover shadow-2xl"
+          className="hero-blob size-36 object-cover shadow-2xl"
         />
         <CodeCard />
       </div>

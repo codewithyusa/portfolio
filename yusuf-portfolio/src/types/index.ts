@@ -1,12 +1,6 @@
-import type { IconType } from "react-icons";export type TechCategory = "Frontend" | "Mobile" | "Backend & API" | "Database & Tools";
+import type { IconType } from "react-icons";
 
-export interface TechItem {
-  name: string;
-  level: number;
-  category: TechCategory;
-  icon: IconType;
-  color: string;
-}export interface NavLinkItem {
+export interface NavLinkItem {
   label: string;
   to: string;
 }
@@ -29,7 +23,9 @@ export interface Project {
   description: string;
   tags: string[];
   gradient: string;
-  github: string;
+  image?: string;
+  github?: string;
+  live?: string;
 }
 
 export interface Service {
@@ -48,4 +44,18 @@ export type SocialName = "GitHub" | "LinkedIn";
 export interface SocialLink {
   name: SocialName;
   href: string;
+}
+
+export type TechCategory =
+  | "Frontend"
+  | "Mobile"
+  | "Backend & API"
+  | "Database & Tools";
+
+export interface TechItem {
+  name: string;
+  level: number;
+  category: TechCategory;
+  icon: IconType;
+  color: string;
 }

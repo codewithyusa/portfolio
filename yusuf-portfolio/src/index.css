@@ -1,6 +1,6 @@
-/* Hero photo: morphing blob, reacts on hover */
 @import "tailwindcss";
 
+/* ---------- Theme tokens ---------- */
 :root {
   --bg: #fcfcfc;
   --fg: #111111;
@@ -8,6 +8,18 @@
   --border: #e8e8ec;
   --surface: #ffffff;
   --accent: #4457e6;
+
+  /* Code card */
+  --code-bg: #ffffff;
+  --code-fg: #3d4252;
+  --code-muted: #8b90a3;
+  --code-line: #e8e8ec;
+  --code-kw: #a259f7;
+  --code-id: #5b7cfa;
+  --code-str: #2f9e74;
+  --code-item: #e5a122;
+  --code-num: #6a6af0;
+  --code-glow: rgba(99, 102, 241, 0.25);
 }
 
 [data-theme="dark"] {
@@ -17,6 +29,18 @@
   --border: #25252d;
   --surface: #14141a;
   --accent: #8b99ff;
+
+  /* Code card */
+  --code-bg: #12141f;
+  --code-fg: #c9d1e8;
+  --code-muted: #8b92a8;
+  --code-line: rgba(255, 255, 255, 0.1);
+  --code-kw: #c792ea;
+  --code-id: #82aaff;
+  --code-str: #5fd3a5;
+  --code-item: #f5a742;
+  --code-num: #8b8bff;
+  --code-glow: rgba(99, 102, 241, 0.5);
 }
 
 @theme inline {
@@ -27,13 +51,28 @@
   --color-border: var(--border);
   --color-surface: var(--surface);
   --color-accent: var(--accent);
+
+  --color-code-bg: var(--code-bg);
+  --color-code-fg: var(--code-fg);
+  --color-code-muted: var(--code-muted);
+  --color-code-line: var(--code-line);
+  --color-code-kw: var(--code-kw);
+  --color-code-id: var(--code-id);
+  --color-code-str: var(--code-str);
+  --color-code-item: var(--code-item);
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px; /* sticky navbar offset */
 }
 
 body {
   @apply bg-bg text-fg font-sans antialiased;
 }
 
-/* Hero photo: morphing blob, reacts on hover */
+/* ---------- Hero photo: morphing blob ---------- */
 @keyframes blob-morph {
   0%   { border-radius: 60% 40% 55% 45% / 55% 45% 55% 45%; }
   25%  { border-radius: 45% 55% 40% 60% / 60% 40% 60% 40%; }
@@ -52,7 +91,9 @@ body {
   border-color: var(--accent);
   animation-duration: 4s;
   box-shadow: 0 25px 50px -12px color-mix(in srgb, var(--accent) 35%, transparent);
-}/* Page fade-in */
+}
+
+/* ---------- Page fade-in ---------- */
 @keyframes page-enter {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: none; }
@@ -60,43 +101,9 @@ body {
 
 .page-enter {
   animation: page-enter 0.4s ease-out;
-}/* Code card colors */
-:root {
-  --code-bg: #ffffff;
-  --code-fg: #3d4252;
-  --code-muted: #8b90a3;
-  --code-line: #e8e8ec;
-  --code-kw: #a259f7;
-  --code-id: #5b7cfa;
-  --code-str: #2f9e74;
-  --code-item: #e5a122;
-  --code-num: #6a6af0;
-  --code-glow: rgba(99, 102, 241, 0.25);
 }
 
-[data-theme="dark"] {
-  --code-bg: #12141f;
-  --code-fg: #c9d1e8;
-  --code-muted: #8b92a8;
-  --code-line: rgba(255, 255, 255, 0.1);
-  --code-kw: #c792ea;
-  --code-id: #82aaff;
-  --code-str: #5fd3a5;
-  --code-item: #f5a742;
-  --code-num: #8b8bff;
-  --code-glow: rgba(99, 102, 241, 0.5);
-}
-
-@theme inline {
-  --color-code-bg: var(--code-bg);
-  --color-code-fg: var(--code-fg);
-  --color-code-muted: var(--code-muted);
-  --color-code-line: var(--code-line);
-  --color-code-kw: var(--code-kw);
-  --color-code-id: var(--code-id);
-  --color-code-str: var(--code-str);
-  --color-code-item: var(--code-item);
-}/* Skill bars fill on appear */
+/* ---------- Skill bars ---------- */
 @keyframes bar-grow {
   from { width: 0; }
 }
@@ -105,19 +112,17 @@ body {
   animation: bar-grow 0.9s ease-out;
 }
 
+/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .page-enter,
   .bar-grow {
     animation: none;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .page-enter {
-    animation: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
   .hero-blob {
     animation: none;
     border-radius: 50%;

@@ -27,10 +27,12 @@ export const projects: Project[] = [
     label: "MERN",
     title: "E-Commerce Platform (MERN)",
     description:
-      "A full online store built on the MERN stack, with product listings, cart, checkout and secure user accounts.",
+      "A full-stack clothing store with role-based access (customer, manager, admin), cart, favorites, orders, local payments, an admin dashboard and Redis caching.",
     tags: ["MongoDB", "Express", "React", "Node.js"],
     gradient: "linear-gradient(135deg, #c026d3, #4338ca)",
-    github: GITHUB_URL,
+    image: "/projects/mern-shop.png",
+    live: "https://ecommerce-ebon-one-21.vercel.app",
+    // add github: "https://github.com/codewithyusa/ecommerce" once the repo is public
   },
   {
     id: "rail",

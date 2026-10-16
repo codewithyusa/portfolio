@@ -4,17 +4,8 @@ import type { Project } from "../../types";
 const pill =
   "whitespace-nowrap rounded-full bg-white/85 px-5 py-2.5 text-sm font-medium text-black backdrop-blur transition hover:bg-white";
 
-function ProjectCard({
-  label,
-  title,
-  description,
-  tags,
-  gradient,
-  image,
-  github,
-  live,
-}: Project) {
-  const hasLinks = Boolean(github || live);
+function ProjectCard({ label, title, description, tags, gradient, image, links }: Project) {
+  const hasLinks = Boolean(links && links.length > 0);
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-surface transition duration-300 hover:-translate-y-1.5 hover:border-accent hover:shadow-xl">
@@ -34,17 +25,18 @@ function ProjectCard({
         )}
 
         {hasLinks && (
-          <div className="absolute inset-0 flex items-center justify-center gap-3 bg-black/45 opacity-0 transition group-hover:opacity-100 group-focus-within:opacity-100">
-            {live && (
-              <a href={live} target="_blank" rel="noopener noreferrer" className={pill}>
-                Live demo
+          <div className="absolute inset-0 flex flex-wrap items-center justify-center gap-3 bg-black/45 p-4 opacity-0 transition group-hover:opacity-100 group-focus-within:opacity-100">
+            {links!.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={pill}
+              >
+                {link.label}
               </a>
-            )}
-            {github && (
-              <a href={github} target="_blank" rel="noopener noreferrer" className={pill}>
-                GitHub
-              </a>
-            )}
+            ))}
           </div>
         )}
       </div>

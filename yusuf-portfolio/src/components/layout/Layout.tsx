@@ -1,17 +1,22 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { usePageTitle } from "../../hooks/usePageTitle";
+import BackToTop from "../ui/BackToTop";
 import ErrorBoundary from "../ui/ErrorBoundary";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 export default function Layout() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   usePageTitle(pathname);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  useLayoutEffect(() => {
+    if (hash) {
+      document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pathname, hash]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -24,6 +29,7 @@ export default function Layout() {
         </ErrorBoundary>
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }

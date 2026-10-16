@@ -1,4 +1,3 @@
-import { GITHUB_URL } from "./socials";
 import type { Project } from "../types";
 
 export const projects: Project[] = [
@@ -11,7 +10,10 @@ export const projects: Project[] = [
     tags: ["Angular", "ASP.NET Core", "PostgreSQL"],
     gradient: "linear-gradient(135deg, #1b2a6b, #1a0f3d)",
     image: "/projects/tms.jpg",
-    github: GITHUB_URL,
+    links: [
+      { label: "Frontend", href: "https://github.com/codewithyusa/Tms-angular" },
+      { label: "Backend", href: "https://github.com/codewithyusa/TmsApi" },
+    ],
   },
   {
     id: "shop-dotnet",
@@ -19,10 +21,13 @@ export const projects: Project[] = [
     title: "E-Commerce Platform (.NET)",
     description:
       "Product listings, cart, checkout and payment flow, with inventory management and user accounts.",
-    tags: ["Angular", "ASP.NET Core", "MongoDB"],
+    tags: ["Angular", "ASP.NET Core", "PostgreSQL"],
     gradient: "linear-gradient(135deg, #3aa876, #1f4e79)",
     image: "/projects/shop-dotnet.jpg",
-    github: GITHUB_URL,
+    links: [
+      { label: "Frontend", href: "https://github.com/codewithyusa/shop-client" },
+      { label: "Backend", href: "https://github.com/codewithyusa/ShopApi" },
+    ],
   },
   {
     id: "shop-mern",
@@ -33,7 +38,7 @@ export const projects: Project[] = [
     tags: ["MongoDB", "Express", "React", "Node.js"],
     gradient: "linear-gradient(135deg, #c026d3, #4338ca)",
     image: "/projects/mern-shop.png",
-    github: "https://github.com/codewithyusa/ecommerce",
+    links: [{ label: "GitHub", href: "https://github.com/codewithyusa/ecommerce" }],
   },
   {
     id: "rail",
@@ -43,7 +48,7 @@ export const projects: Project[] = [
     tags: ["Real-time", "Full-stack"],
     gradient: "linear-gradient(135deg, #a85a28, #66701f)",
     image: "/projects/rail.jpg",
-    github: GITHUB_URL,
+    links: [{ label: "GitHub", href: "https://github.com/codewithyusa/RailwayTracker" }],
   },
   {
     id: "odin",
@@ -54,6 +59,6 @@ export const projects: Project[] = [
     tags: ["HTML", "CSS", "JavaScript"],
     gradient: "linear-gradient(135deg, #a88a22, #4f7a1f)",
     image: "/projects/odin.jpg",
-    github: GITHUB_URL,
+    links: [{ label: "GitHub", href: "https://github.com/codewithyusa/odin_book" }],
   },
 ];

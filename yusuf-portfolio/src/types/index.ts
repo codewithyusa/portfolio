@@ -16,6 +16,11 @@ export interface TimelineItem {
   subtitle: string;
 }
 
+export interface ProjectLink {
+  label: string;
+  href: string;
+}
+
 export interface Project {
   id: string;
   label: string;
@@ -24,8 +29,7 @@ export interface Project {
   tags: string[];
   gradient: string;
   image?: string;
-  github?: string;
-  live?: string;
+  links?: ProjectLink[];
 }
 
 export interface Service {

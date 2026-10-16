@@ -10,6 +10,7 @@ export const projects: Project[] = [
       "Manages training schedules, participants and progress tracking, with JWT login, role-based access and a REST API.",
     tags: ["Angular", "ASP.NET Core", "PostgreSQL"],
     gradient: "linear-gradient(135deg, #1b2a6b, #1a0f3d)",
+    image: "/projects/tms.jpg",
     github: GITHUB_URL,
   },
   {
@@ -20,6 +21,7 @@ export const projects: Project[] = [
       "Product listings, cart, checkout and payment flow, with inventory management and user accounts.",
     tags: ["Angular", "ASP.NET Core", "MongoDB"],
     gradient: "linear-gradient(135deg, #3aa876, #1f4e79)",
+    image: "/projects/shop-dotnet.jpg",
     github: GITHUB_URL,
   },
   {
@@ -31,8 +33,7 @@ export const projects: Project[] = [
     tags: ["MongoDB", "Express", "React", "Node.js"],
     gradient: "linear-gradient(135deg, #c026d3, #4338ca)",
     image: "/projects/mern-shop.png",
-    live: "https://ecommerce-ebon-one-21.vercel.app",
-    // add github: "https://github.com/codewithyusa/ecommerce" once the repo is public
+    github: "https://github.com/codewithyusa/ecommerce",
   },
   {
     id: "rail",
@@ -41,6 +42,7 @@ export const projects: Project[] = [
     description: "A real-time app to monitor train locations and schedules.",
     tags: ["Real-time", "Full-stack"],
     gradient: "linear-gradient(135deg, #a85a28, #66701f)",
+    image: "/projects/rail.jpg",
     github: GITHUB_URL,
   },
   {
@@ -51,6 +53,7 @@ export const projects: Project[] = [
       "A collection of apps and exercises built while completing The Odin Project curriculum.",
     tags: ["HTML", "CSS", "JavaScript"],
     gradient: "linear-gradient(135deg, #a88a22, #4f7a1f)",
+    image: "/projects/odin.jpg",
     github: GITHUB_URL,
   },
 ];

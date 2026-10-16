@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { navLinks } from "../../data/navLinks";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
@@ -12,6 +12,21 @@ export default function Navbar() {
   const menuOpen = open && !isDesktop;
   const close = useCallback(() => setOpen(false), []);
 
+  // Lock page scroll and allow Escape to close while the mobile menu is open
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen, close]);
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur">
       <nav className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-6">
@@ -24,10 +39,13 @@ export default function Navbar() {
             <li key={to}>
               <NavLink
                 to={to}
+                end={to === "/"}
                 className={({ isActive }) =>
                   cn(
                     "text-[15px] font-medium transition hover:text-fg",
-                    isActive ? "text-fg" : "text-muted"
+                    isActive
+                      ? "text-fg underline decoration-accent decoration-2 underline-offset-[10px]"
+                      : "text-muted"
                   )
                 }
               >

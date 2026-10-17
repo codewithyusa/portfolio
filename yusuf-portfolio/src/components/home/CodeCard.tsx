@@ -46,9 +46,11 @@ export default function CodeCard() {
 
       <div className="flex items-center justify-between border-t border-code-line pt-4">
         <div className="flex items-center gap-4">
-          <span className="grid size-12 place-items-center rounded-full bg-gradient-to-br from-[#4457e6] to-[#8b6bff] text-sm font-bold text-white">
-            YUSA
-          </span>
+          <img
+            src="/yusuf.jpg"
+            alt="Yusuf Umer"
+            className="size-12 shrink-0 rounded-full object-cover object-top"
+          />
           <div>
             <p className="font-semibold text-fg">Yusuf Umer</p>
             <p className="text-xs text-code-muted">Addis Ababa &amp; Remote</p>

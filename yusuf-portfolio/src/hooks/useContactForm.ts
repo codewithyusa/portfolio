@@ -1,21 +1,25 @@
 import { useCallback, useReducer, type ChangeEvent, type FocusEvent, type FormEvent } from "react";
+import emailjs from "@emailjs/browser";
 import { validateEmail, validateMessage, validateName } from "../utils/validators";
 
 export type Field = "name" | "email" | "message";
+export type Status = "idle" | "sending" | "sent" | "error";
 type Fields = Record<Field, string>;
 
 interface State {
   values: Fields;
   errors: Fields;
   touched: Record<Field, boolean>;
-  sent: boolean;
+  status: Status;
 }
 
 type Action =
   | { type: "change"; field: Field; value: string }
   | { type: "blur"; field: Field }
   | { type: "invalid"; errors: Fields }
-  | { type: "sent" };
+  | { type: "sending" }
+  | { type: "sent" }
+  | { type: "error" };
 
 const validators: Record<Field, (v: string) => string> = {
   name: validateName,
@@ -29,7 +33,7 @@ const initialState: State = {
   values: empty,
   errors: empty,
   touched: { name: false, email: false, message: false },
-  sent: false,
+  status: "idle",
 };
 
 function reducer(state: State, action: Action): State {
@@ -39,7 +43,8 @@ function reducer(state: State, action: Action): State {
       const errors = state.touched[action.field]
         ? { ...state.errors, [action.field]: validators[action.field](action.value) }
         : state.errors;
-      return { ...state, values, errors, sent: false };
+      const status = state.status === "sending" ? state.status : "idle";
+      return { ...state, values, errors, status };
     }
     case "blur":
       return {
@@ -52,14 +57,20 @@ function reducer(state: State, action: Action): State {
       };
     case "invalid":
       return { ...state, errors: action.errors, touched: { name: true, email: true, message: true } };
+    case "sending":
+      return { ...state, status: "sending" };
     case "sent":
-      return { ...initialState, sent: true };
+      return { ...initialState, status: "sent" };
+    case "error":
+      return { ...state, status: "error" };
     default:
       return state;
   }
 }
 
-const EMAIL = "yusufumer26@gmail.com";
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
 
 export function useContactForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -77,8 +88,10 @@ export function useContactForm() {
   );
 
   const handleSubmit = useCallback(
-    (e: FormEvent) => {
+    async (e: FormEvent) => {
       e.preventDefault();
+      if (state.status === "sending") return;
+
       const { name, email, message } = state.values;
       const errors: Fields = {
         name: validateName(name),
@@ -91,14 +104,34 @@ export function useContactForm() {
         return;
       }
 
-      const subject = encodeURIComponent(`Message from ${name.trim()}`);
-      const body = encodeURIComponent(
-        `${message.trim()}\n\nFrom: ${name.trim()} (${email.trim()})`
-      );
-      window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-      dispatch({ type: "sent" });
+      if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+        console.error("EmailJS keys are missing. Check your .env file and restart npm run dev.");
+        dispatch({ type: "error" });
+        return;
+      }
+
+      dispatch({ type: "sending" });
+
+      try {
+        await emailjs.send(
+          SERVICE_ID,
+          TEMPLATE_ID,
+          {
+            name: name.trim(),
+            email: email.trim(),
+            title: `Portfolio message from ${name.trim()}`,
+            message: message.trim(),
+            time: new Date().toLocaleString(),
+          },
+          { publicKey: PUBLIC_KEY }
+        );
+        dispatch({ type: "sent" });
+      } catch (err) {
+        console.error("EmailJS error:", err);
+        dispatch({ type: "error" });
+      }
     },
-    [state.values]
+    [state.values, state.status]
   );
 
   return { ...state, handleChange, handleBlur, handleSubmit };

@@ -29,8 +29,9 @@ export default function CodeCard() {
         <Kw>const</Kw> <Id>developer</Id> = {"{"}
         {"\n  "}name: <Str>'Yusuf Umer'</Str>,
         {"\n  "}title: <Str>'Full-Stack &amp; Mobile Engineer'</Str>,
-        {"\n  "}skills: [<Item>'React'</Item>, <Item>'Angular'</Item>, <Item>'.NET'</Item>,{" "}
-        <Item>'Flutter'</Item>],
+                {"\n  "}skills: [<Item>'React'</Item>, <Item>'Angular'</Item>, <Item>'.NET'</Item>,
+        {"\n    "}<Item>'Flutter'</Item>, <Item>'React Native'</Item>, <Item>'Node.js'</Item>,
+        {"\n    "}<Item>'NestJS'</Item>],
         {"\n  "}passions: [<Str>'Clean Architecture'</Str>, <Str>'Secure APIs'</Str>],
         {"\n  "}location: <Str>'Addis Ababa'</Str>,
         {"\n  "}status: <Str>'Ready for Next Challenge'</Str>

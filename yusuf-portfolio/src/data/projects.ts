@@ -54,9 +54,8 @@ export const projects: Project[] = [
     id: "odin",
     label: "ODIN",
     title: "The Odin Project Apps",
-    description:
-      "A collection of apps and exercises built while completing The Odin Project curriculum.",
-    tags: ["HTML", "CSS", "JavaScript"],
+    description: 'Full-stack apps built with the PERN stack while completing The Odin Project curriculum.',
+    tags: ['PostgreSQL', 'Express', 'React', 'Node.js'],
     gradient: "linear-gradient(135deg, #a88a22, #4f7a1f)",
     image: "/projects/odin.jpg",
     links: [{ label: "GitHub", href: "https://github.com/codewithyusa/odin_book" }],

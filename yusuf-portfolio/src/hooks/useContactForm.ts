@@ -127,7 +127,8 @@ export function useContactForm() {
         );
         dispatch({ type: "sent" });
       } catch (err) {
-        console.error("EmailJS error:", err);
+        const { status, text } = err as { status?: number; text?: string };
+        console.error("EmailJS error:", status, text);
         dispatch({ type: "error" });
       }
     },

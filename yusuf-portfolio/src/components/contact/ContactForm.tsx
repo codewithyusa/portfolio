@@ -5,7 +5,8 @@ const inputClass =
   "w-full rounded-2xl border bg-bg px-5 py-4 text-base outline-none transition placeholder:text-muted/70 focus:border-accent";
 
 export default function ContactForm() {
-  const { values, errors, sent, handleChange, handleBlur, handleSubmit } = useContactForm();
+  const { values, errors, status, handleChange, handleBlur, handleSubmit } = useContactForm();
+  const sending = status === "sending";
 
   const fieldProps = (field: Field) => ({
     id: field,
@@ -13,6 +14,7 @@ export default function ContactForm() {
     value: values[field],
     onChange: handleChange,
     onBlur: handleBlur,
+    disabled: sending,
     "aria-invalid": Boolean(errors[field]),
     className: cn(inputClass, errors[field] ? "border-red-500" : "border-border"),
   });
@@ -47,18 +49,27 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-fg py-4 text-sm font-medium text-bg transition hover:-translate-y-0.5 hover:opacity-90"
+        disabled={sending}
+        className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-fg py-4 text-sm font-medium text-bg transition hover:-translate-y-0.5 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
       >
-        Send Message
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="22" y1="2" x2="11" y2="13" />
-          <polygon points="22 2 15 22 11 13 2 9 22 2" />
-        </svg>
+        {sending ? "Sending..." : "Send Message"}
+        {!sending && (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13" />
+            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+          </svg>
+        )}
       </button>
 
-      {sent && (
+      {status === "sent" && (
         <p role="status" className="mt-4 text-center text-sm text-green-600">
-          Your email app should open with the message ready to send.
+          Thanks! Your message was sent. I'll get back to you soon.
+        </p>
+      )}
+
+      {status === "error" && (
+        <p role="alert" className="mt-4 text-center text-sm text-red-500">
+          Something went wrong and your message wasn't sent. Please try again, or email me directly at yusufumer26@gmail.com.
         </p>
       )}
     </form>
